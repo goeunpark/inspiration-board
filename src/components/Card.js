@@ -7,16 +7,13 @@ import './Card.css';
 class Card extends Component {
 
   render() {
-
     let existingIcon = this.props.emoji;
     const getEmoji =   emoji.getUnicode(`${this.props.emoji}`)
 
     return (
       <div className="card card__content">
-
           <div className="card__content-emoji ">{existingIcon && getEmoji}</div>
           <div className="card__content-text">{this.props.text}</div>
-
       </div>
     )
   }
