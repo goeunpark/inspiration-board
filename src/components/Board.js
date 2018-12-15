@@ -39,9 +39,13 @@ class Board extends Component {
     }
 
     render() {
+
+      const cardList = this.state.cards.map((card) => {
+        return <Card {...card} />
+      })
       return (
         <div>
-          <Card />
+          {cardList}
         </div>
       )
     }
