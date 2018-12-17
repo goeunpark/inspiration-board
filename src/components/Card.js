@@ -14,7 +14,7 @@ class Card extends Component {
       <div className="card card__content">
           <div className="card__content-emoji ">{existingIcon && getEmoji}</div>
           <div className="card__content-text">{this.props.text}</div>
-          <button className="card__delete">~ d e l e t e ~ </button>
+          <button className="card__delete" onClick={() => this.props.deletePostCallback(this.props.id)}>~ d e l e t e ~ </button>
 
       </div>
     )

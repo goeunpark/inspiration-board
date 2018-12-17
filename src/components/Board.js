@@ -17,10 +17,10 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    const GET_BOARD = this.props.url;
-    const BOARD_NAME = this.props.boardName;
+    const URL= this.props.url;
+    const BOARD = `boards/${this.props.boardName}`;
 
-    axios.get(GET_BOARD + BOARD_NAME + '/cards')
+    axios.get(URL + BOARD + '/cards')
     .then((response) => {
       const formattedCards = response.data.map((card, i) => {
         return {emoji: card.card.emoji,
@@ -35,25 +35,39 @@ class Board extends Component {
         this.setState({
           error: error.message,
         });
-      })
+      });
     }
 
-    render() {
 
-      const cardList = this.state.cards.map((card) => {
-        return <Card {...card} />
-      })
-      return (
-        <div>
-          {cardList}
-        </div>
-      )
+    deletePost = (id) => {
+      axios.delete(this.props.url +`cards/${id}`)
+      .then((response) => {
+        console.log(URL +`cards/${id}`)
+
+        })
+        .catch((error) => {
+          this.setState({
+            error: error.message,
+          });
+        })
+      }
+
+
+      render() {
+        const cardList = this.state.cards.map((card) => {
+          return <Card deletePostCallback={this.deletePost} {...card} />
+        })
+        return (
+          <div>
+            {cardList}
+          </div>
+        )
+      }
+
     }
 
-  }
+    Board.propTypes = {
 
-  Board.propTypes = {
+    };
 
-  };
-
-  export default Board;
+    export default Board;
